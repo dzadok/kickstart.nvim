@@ -8,4 +8,5 @@ return {
   { 'dmmulroy/tsc.nvim' },
   { 'marilari88/twoslash-queries.nvim' },
   { 'yioneko/nvim-vtsls' },
+  { 'dmmulroy/tsc.nvim' },
 }
