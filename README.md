@@ -49,12 +49,17 @@ Neovim's configurations are located under the following paths, depending on your
 | Windows (cmd)| `%localappdata%\nvim\` |
 | Windows (powershell)| `$env:LOCALAPPDATA\nvim\` |
 
+### Install Kickstart
+
 #### Recommended Step
 
 [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) this repo
 so that you have your own copy that you can modify, then install by cloning the
 fork to your machine using one of the commands below, depending on your OS.
 
+
+
+>>>>>>> d502a10 (Initial Commit)
 > **NOTE**
 > Your fork's url will be something like this:
 > `https://github.com/<your_github_username>/kickstart.nvim.git`
@@ -104,10 +109,78 @@ That's it! Lazy will install all the plugins you have. Use `:Lazy` to view
 current plugin status. Hit `q` to close the window.
 
 Read through the `init.lua` file in your configuration folder for more
+<<<<<<< HEAD
 information about extending and exploring Neovim. That also includes
 examples of adding popularly requested plugins.
 
 
+=======
+information about extending and exploring Neovim.
+
+
+#### Examples of adding popularly requested plugins
+
+NOTE: You'll need to uncomment the line in the init.lua that turns on loading custom plugins.
+
+<details>
+  <summary>Adding autopairs</summary>
+
+This will automatically install [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
+and enable it on startup. For more information, see documentation for
+[lazy.nvim](https://github.com/folke/lazy.nvim).
+
+In the file: `lua/custom/plugins/autopairs.lua`, add:
+
+```lua
+-- File: lua/custom/plugins/autopairs.lua
+
+return {
+  "windwp/nvim-autopairs",
+  -- Optional dependency
+  dependencies = { 'hrsh7th/nvim-cmp' },
+  config = function()
+    require("nvim-autopairs").setup {}
+    -- If you want to automatically add `(` after selecting a function or method
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    local cmp = require('cmp')
+    cmp.event:on(
+      'confirm_done',
+      cmp_autopairs.on_confirm_done()
+    )
+  end,
+}
+```
+
+</details>
+<details>
+  <summary>Adding a file tree plugin</summary>
+
+This will install the tree plugin and add the command `:Neotree` for you.
+For more information, see the documentation at
+[neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim).
+
+In the file: `lua/custom/plugins/filetree.lua`, add:
+
+```lua
+-- File: lua/custom/plugins/filetree.lua
+
+return {
+  "nvim-neo-tree/neo-tree.nvim",
+  version = "*",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "MunifTanjim/nui.nvim",
+  },
+  config = function ()
+    require('neo-tree').setup {}
+  end,
+}
+```
+
+</details>
+
+>>>>>>> d502a10 (Initial Commit)
 ### Getting Started
 
 [The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
@@ -187,7 +260,11 @@ wsl --install
 wsl
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
+<<<<<<< HEAD
 sudo apt install make gcc ripgrep unzip git xclip neovim
+=======
+sudo apt install make gcc ripgrep unzip neovim
+>>>>>>> d502a10 (Initial Commit)
 ```
 </details>
 
@@ -197,13 +274,18 @@ sudo apt install make gcc ripgrep unzip git xclip neovim
 ```
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
+<<<<<<< HEAD
 sudo apt install make gcc ripgrep unzip git xclip neovim
+=======
+sudo apt install make gcc ripgrep unzip neovim
+>>>>>>> d502a10 (Initial Commit)
 ```
 </details>
 <details><summary>Debian Install Steps</summary>
 
 ```
 sudo apt update
+<<<<<<< HEAD
 sudo apt install make gcc ripgrep unzip git xclip curl
 
 # Now we install nvim
@@ -215,11 +297,18 @@ sudo tar -C /opt -xzf nvim-linux64.tar.gz
 
 # make it available in /usr/local/bin, distro installs to /usr/bin
 sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/
+=======
+sudo apt install make gcc ripgrep unzip git
+echo "deb https://deb.debian.org/debian unstable main" | sudo tee -a /etc/apt/sources.list
+sudo apt update
+sudo apt install -t unstable neovim
+>>>>>>> d502a10 (Initial Commit)
 ```
 </details>
 <details><summary>Fedora Install Steps</summary>
 
 ```
+<<<<<<< HEAD
 sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 ```
 </details>
@@ -228,6 +317,9 @@ sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 
 ```
 sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
+=======
+sudo dnf install -y gcc make git ripgrep fd-find neovim
+>>>>>>> d502a10 (Initial Commit)
 ```
 </details>
 
