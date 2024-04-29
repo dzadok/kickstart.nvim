@@ -1123,7 +1123,6 @@ vim.keymap.set('v', 'x', '"_x', { silent = true })
 vim.keymap.set('v', 'X', '"_X', { silent = true })
 
 require('telescope').load_extension 'git_worktree'
--- vim.keymap.set('n', '<leader>gwa', require('git-worktree').create_worktree, { name = '[G]it [W]orktree [A]dd' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
