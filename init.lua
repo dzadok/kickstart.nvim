@@ -90,8 +90,8 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+-- Set to true if you have a Nerd Font installed
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -154,7 +154,14 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 8
+
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+
+vim.opt.swapfile = false
+
+vim.opt.termguicolors = true
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -769,8 +776,9 @@ require('lazy').setup({
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        -- You can use a sub-list to tell conform to run *until* a formatter
+        -- is found.
+        javascript = { { 'prettierd', 'prettier' } },
       },
     },
   },
@@ -893,27 +901,23 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-    end,
-  },
+  -- { -- You can easily change to a different colorscheme.
+  --   -- Change the name of the colorscheme plugin below, and then
+  --   -- change the command in the config to whatever the name of that colorscheme is.
+  --   --
+  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --   'folke/tokyonight.nvim',
+  --   priority = 1000, -- Make sure to load this before all the other start plugins.
+  --   init = function()
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     vim.cmd.colorscheme 'tokyonight-night'
+  --
+  --     -- You can configure highlights by doing something like:
+  --     vim.cmd.hi 'Comment gui=none'
+  --   end,
+  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -1001,12 +1005,8 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
-  --
-  -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
-  -- Or use telescope!
-  -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
-  -- you can continue same window with `<space>sr` which resumes last telescope search
+  --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
+  { import = 'custom.plugins' },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1029,5 +1029,49 @@ require('lazy').setup({
   },
 })
 
+vim.api.nvim_create_user_command('W', 'write', {})
+
+vim.cmd.colorscheme 'catppuccin'
+
+local harpoon = require 'harpoon'
+harpoon:setup {}
+
+local conf = require('telescope.config').values
+local function toggle_telescope(harpoon_files)
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
+
+  require('telescope.pickers')
+    .new({}, {
+      prompt_title = 'Harpoon',
+      finder = require('telescope.finders').new_table {
+        results = file_paths,
+      },
+      previewer = conf.file_previewer {},
+      sorter = conf.generic_sorter {},
+    })
+    :find()
+end
+vim.keymap.set('n', '<C-e>', function()
+  toggle_telescope(harpoon:list())
+end, { desc = 'Open harpoon window' })
+
+vim.keymap.set('n', '<leader>a', function()
+  harpoon:list():add()
+end, { desc = '[A]dd to harpoon list' })
+vim.keymap.set('n', '<C-h>', function()
+  harpoon:list():select(1)
+end)
+vim.keymap.set('n', '<C-j>', function()
+  harpoon:list():select(2)
+end)
+vim.keymap.set('n', '<C-k>', function()
+  harpoon:list():select(3)
+end)
+vim.keymap.set('n', '<C-l>', function()
+  harpoon:list():select(4)
+end)
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
