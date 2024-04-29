@@ -3,10 +3,6 @@ local map = vim.keymap.set
 return {
   'scalameta/nvim-metals',
   dependencies = {
-    {
-      'j-hui/fidget.nvim',
-      opts = {},
-    },
     'nvim-lua/plenary.nvim',
     {
       'mfussenegger/nvim-dap',
@@ -51,21 +47,20 @@ return {
     -- you *have* to have a setting to display this in your statusline or else
     -- you'll not see any messages from metals. There is more info in the help
     -- docs about this
-    metals_config.init_options.statusBarProvider = 'off'
+    -- metals_config.init_options.statusBarProvider = "on"
 
     -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
-    metals_config.capabilities = require('cmp_nvim_lsp').default_capabilities { code_lens = true }
+    metals_config.capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     metals_config.on_attach = function(client, bufnr)
       require('metals').setup_dap()
 
       -- LSP mappings
-      map('n', 'gd', vim.lsp.buf.definition)
-      map('n', 'gD', vim.lsp.buf.declaration)
+      map('n', 'gD', vim.lsp.buf.definition)
       map('n', 'K', vim.lsp.buf.hover)
       map('n', 'gi', vim.lsp.buf.implementation)
       map('n', 'gr', vim.lsp.buf.references)
-      -- map('n', 'gds', vim.lsp.buf.document_symbol)
+      map('n', 'gds', vim.lsp.buf.document_symbol)
       map('n', 'gws', vim.lsp.buf.workspace_symbol)
       map('n', '<leader>cl', vim.lsp.codelens.run)
       map('n', '<leader>sh', vim.lsp.buf.signature_help)
@@ -82,12 +77,12 @@ return {
 
       -- all workspace errors
       map('n', '<leader>ae', function()
-        vim.diagnostic.setqflist { severity = vim.diagnostic.severity.ERROR }
+        vim.diagnostic.setqflist { severity = 'E' }
       end)
 
       -- all workspace warnings
       map('n', '<leader>aw', function()
-        vim.diagnostic.setqflist { severity = vim.diagnostic.severity.WARN }
+        vim.diagnostic.setqflist { severity = 'W' }
       end)
 
       -- buffer diagnostics only
