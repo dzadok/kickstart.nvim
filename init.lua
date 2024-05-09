@@ -1078,5 +1078,10 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
+-- Don't yank on delete char
+vim.keymap.set('n', 'x', '"_x', { silent = true })
+vim.keymap.set('n', 'X', '"_X', { silent = true })
+vim.keymap.set('v', 'x', '"_x', { silent = true })
+vim.keymap.set('v', 'X', '"_X', { silent = true })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
