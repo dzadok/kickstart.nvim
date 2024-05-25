@@ -77,12 +77,12 @@ return {
 
       -- all workspace errors
       map('n', '<leader>ae', function()
-        vim.diagnostic.setqflist { severity = vim.diagnostic.severity.E }
+        vim.diagnostic.setqflist { severity = vim.diagnostic.severity.ERROR }
       end)
 
       -- all workspace warnings
       map('n', '<leader>aw', function()
-        vim.diagnostic.setqflist { severity = vim.diagnostic.severity.W }
+        vim.diagnostic.setqflist { severity = vim.diagnostic.severity.WARN }
       end)
 
       -- buffer diagnostics only
