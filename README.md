@@ -119,7 +119,6 @@ examples of adding popularly requested plugins.
 > [!NOTE]
 > For more information about a particular plugin check its repository's documentation.
 
-
 ### Getting Started
 
 [The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
@@ -227,6 +226,7 @@ sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 
 # make it available in /usr/local/bin, distro installs to /usr/bin
 sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/
+sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/
 ```
 </details>
 <details><summary>Fedora Install Steps</summary>
