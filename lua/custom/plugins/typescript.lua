@@ -14,6 +14,11 @@ return {
         includeInlayParameterNameHints = 'all',
         includeInlayFunctionParameterTypeHints = true,
       },
+      handlers = {
+        ['textDocument/publishDiagnostics'] = function()
+          require('typescript-tools').api.filter_diagnostics { 80004 }
+        end,
+      },
     },
   },
 }

@@ -1,6 +1,5 @@
 return {
   'folke/trouble.nvim',
-  branch = 'dev', -- IMPORTANT!
   keys = {
     {
       '<leader>xx',
@@ -31,6 +30,16 @@ return {
       '<leader>xQ',
       '<cmd>Trouble qflist toggle<cr>',
       desc = 'Quickfix List (Trouble)',
+    },
+    {
+      ']t',
+      '<cmd>Trouble next<cr><cmd>Trouble jump<cr>',
+      desc = 'Next Trouble',
+    },
+    {
+      '[t',
+      '<cmd>Trouble prev<cr><cmd>Trouble jump<cr>',
+      desc = 'Previous Trouble',
     },
   },
   opts = {
