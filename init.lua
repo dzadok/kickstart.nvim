@@ -440,6 +440,7 @@ require('lazy').setup({
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+      'scalameta/nvim-metals',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -650,6 +651,7 @@ require('lazy').setup({
         },
       }
     end,
+    opts = { setup = { metals = {} } },
   },
 
   { -- Autoformat
