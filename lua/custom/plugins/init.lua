@@ -7,4 +7,6 @@ return {
   { 'tpope/vim-unimpaired' },
   { 'yioneko/nvim-vtsls' },
   { 'marilari88/twoslash-queries.nvim' },
+  { 'lbrayner/vim-rzip' },
+  { 'tpope/vim-jdaddy' },
 }
