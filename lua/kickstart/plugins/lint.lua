@@ -7,6 +7,12 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
+        typescript = { 'snyk_iac' },
+        javascript = { 'snyk_iac' },
+        scala = { 'snyk_iac' },
+        yaml = { 'snyk_iac' },
+        json = { 'snyk_iac' },
+        dockerfile = { 'snyk_iac' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
