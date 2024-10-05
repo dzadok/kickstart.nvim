@@ -7,4 +7,5 @@ return {
   { 'tpope/vim-unimpaired' },
   { 'dmmulroy/tsc.nvim' },
   { 'marilari88/twoslash-queries.nvim' },
+  { 'yioneko/nvim-vtsls' },
 }
