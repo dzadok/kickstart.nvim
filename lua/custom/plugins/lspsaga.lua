@@ -7,6 +7,10 @@ return {
       ui = {
         lightbulb = { enabled = false },
       },
+      lightbulb = {
+        enable = false,
+        sign = false,
+      },
     }
   end,
   dependencies = {
