@@ -28,8 +28,8 @@ External Requirements:
 - A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
   - if you have it set `vim.g.have_nerd_font` in `init.lua` to true
 - Language Setup:
-  - If want to write Typescript, you need `npm`
-  - If want to write Golang, you will need `go`
+  - If you want to write Typescript, you need `npm`
+  - If you want to write Golang, you will need `go`
   - etc.
 
 > **NOTE**
@@ -59,10 +59,13 @@ fork to your machine using one of the commands below, depending on your OS.
 
 
 
->>>>>>> d502a10 (Initial Commit)
 > **NOTE**
 > Your fork's url will be something like this:
 > `https://github.com/<your_github_username>/kickstart.nvim.git`
+
+You likely want to remove `lazy-lock.json` from your fork's `.gitignore` file
+too - it's ignored in the kickstart repo to make maintenance easier, but it's
+[recommmended to track it in version control](https://lazy.folke.io/usage/lockfile).
 
 #### Clone kickstart.nvim
 > **NOTE**
@@ -82,13 +85,13 @@ git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HO
 If you're using `cmd.exe`:
 
 ```
-git clone https://github.com/nvim-lua/kickstart.nvim.git %localappdata%\nvim\
+git clone https://github.com/nvim-lua/kickstart.nvim.git "%localappdata%\nvim"
 ```
 
 If you're using `powershell.exe`
 
 ```
-git clone https://github.com/nvim-lua/kickstart.nvim.git $env:LOCALAPPDATA\nvim\
+git clone https://github.com/nvim-lua/kickstart.nvim.git "${env:LOCALAPPDATA}\nvim"
 ```
 
 </details>
@@ -105,12 +108,6 @@ That's it! Lazy will install all the plugins you have. Use `:Lazy` to view
 current plugin status. Hit `q` to close the window.
 
 Read through the `init.lua` file in your configuration folder for more
-<<<<<<< HEAD
-information about extending and exploring Neovim. That also includes
-examples of adding popularly requested plugins.
-
-
-=======
 information about extending and exploring Neovim.
 
 
@@ -176,7 +173,6 @@ return {
 
 </details>
 
->>>>>>> d502a10 (Initial Commit)
 ### Getting Started
 
 [The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
@@ -199,7 +195,7 @@ return {
     `~/.local/share/nvim-kickstart`. You can apply this approach to any Neovim
     distribution that you would like to try out.
 * What if I want to "uninstall" this configuration:
-  * See [lazy.nvim uninstall](https://github.com/folke/lazy.nvim#-uninstalling) information
+  * See [lazy.nvim uninstall](https://lazy.folke.io/usage#-uninstalling) information
 * Why is the kickstart `init.lua` a single file? Wouldn't it make sense to split it into multiple files?
   * The main purpose of kickstart is to serve as a teaching tool and a reference
     configuration that someone can easily use to `git clone` as a basis for their own.
@@ -256,11 +252,7 @@ wsl --install
 wsl
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
-<<<<<<< HEAD
 sudo apt install make gcc ripgrep unzip git xclip neovim
-=======
-sudo apt install make gcc ripgrep unzip neovim
->>>>>>> d502a10 (Initial Commit)
 ```
 </details>
 
@@ -270,18 +262,13 @@ sudo apt install make gcc ripgrep unzip neovim
 ```
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
-<<<<<<< HEAD
 sudo apt install make gcc ripgrep unzip git xclip neovim
-=======
-sudo apt install make gcc ripgrep unzip neovim
->>>>>>> d502a10 (Initial Commit)
 ```
 </details>
 <details><summary>Debian Install Steps</summary>
 
 ```
 sudo apt update
-<<<<<<< HEAD
 sudo apt install make gcc ripgrep unzip git xclip curl
 
 # Now we install nvim
@@ -293,18 +280,11 @@ sudo tar -C /opt -xzf nvim-linux64.tar.gz
 
 # make it available in /usr/local/bin, distro installs to /usr/bin
 sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/
-=======
-sudo apt install make gcc ripgrep unzip git
-echo "deb https://deb.debian.org/debian unstable main" | sudo tee -a /etc/apt/sources.list
-sudo apt update
-sudo apt install -t unstable neovim
->>>>>>> d502a10 (Initial Commit)
 ```
 </details>
 <details><summary>Fedora Install Steps</summary>
 
 ```
-<<<<<<< HEAD
 sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 ```
 </details>
@@ -313,9 +293,6 @@ sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 
 ```
 sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
-=======
-sudo dnf install -y gcc make git ripgrep fd-find neovim
->>>>>>> d502a10 (Initial Commit)
 ```
 </details>
 

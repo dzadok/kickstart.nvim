@@ -11,7 +11,13 @@ return {
   },
   cmd = 'Neotree',
   keys = {
+<<<<<<< HEAD
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal' },
+||||||| 5aeddfd
+    { '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
+=======
+    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+>>>>>>> 9f9cc4cee27a6729f75102b935e805cf9c83d0ff
   },
   opts = {
     filesystem = {
