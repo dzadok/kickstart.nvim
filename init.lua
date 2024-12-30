@@ -263,6 +263,7 @@ end, {
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  'neovim/nvim-lspconfig',
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -1070,47 +1071,6 @@ vim.api.nvim_create_user_command('W', 'write', {})
 
 vim.cmd.colorscheme 'catppuccin'
 
-local harpoon = require 'harpoon'
-harpoon:setup {}
-
-local conf = require('telescope.config').values
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require('telescope.pickers')
-    .new({}, {
-      prompt_title = 'Harpoon',
-      finder = require('telescope.finders').new_table {
-        results = file_paths,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-    })
-    :find()
-end
-vim.keymap.set('n', '<C-e>', function()
-  toggle_telescope(harpoon:list())
-end, { desc = 'Open harpoon window' })
-
-vim.keymap.set('n', '<leader>a', function()
-  harpoon:list():add()
-end, { desc = '[A]dd to harpoon list' })
-vim.keymap.set('n', '<C-h>', function()
-  harpoon:list():select(1)
-end)
-vim.keymap.set('n', '<C-j>', function()
-  harpoon:list():select(2)
-end)
-vim.keymap.set('n', '<C-k>', function()
-  harpoon:list():select(3)
-end)
-vim.keymap.set('n', '<C-l>', function()
-  harpoon:list():select(4)
-end)
-
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
@@ -1120,6 +1080,7 @@ vim.keymap.set('n', 'x', '"_x', { silent = true })
 vim.keymap.set('n', 'X', '"_X', { silent = true })
 vim.keymap.set('v', 'x', '"_x', { silent = true })
 vim.keymap.set('v', 'X', '"_X', { silent = true })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 
 require('telescope').load_extension 'git_worktree'
 
