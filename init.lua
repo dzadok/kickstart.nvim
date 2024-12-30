@@ -253,6 +253,7 @@ end, {
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  'neovim/nvim-lspconfig',
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -880,7 +881,6 @@ vim.api.nvim_create_user_command('W', 'write', {})
 
 vim.cmd.colorscheme 'catppuccin'
 
-
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
@@ -890,6 +890,7 @@ vim.keymap.set('n', 'x', '"_x', { silent = true })
 vim.keymap.set('n', 'X', '"_X', { silent = true })
 vim.keymap.set('v', 'x', '"_x', { silent = true })
 vim.keymap.set('v', 'X', '"_X', { silent = true })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 
 -- Don't yank on delete char
 vim.keymap.set('n', 'x', '"_x', { silent = true })
