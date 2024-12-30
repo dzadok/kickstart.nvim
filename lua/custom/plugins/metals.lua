@@ -47,7 +47,7 @@ return {
     -- you *have* to have a setting to display this in your statusline or else
     -- you'll not see any messages from metals. There is more info in the help
     -- docs about this
-    -- metals_config.init_options.statusBarProvider = "on"
+    metals_config.init_options.statusBarProvider = 'off'
 
     -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
     metals_config.capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -57,7 +57,7 @@ return {
 
       -- LSP mappings
       map('n', 'gD', vim.lsp.buf.definition)
-      map('n', 'K', vim.lsp.buf.hover)
+      -- map('n', 'K', vim.lsp.buf.hover)
       map('n', 'gi', vim.lsp.buf.implementation)
       map('n', 'gr', vim.lsp.buf.references)
       map('n', 'gds', vim.lsp.buf.document_symbol)
@@ -77,12 +77,12 @@ return {
 
       -- all workspace errors
       map('n', '<leader>ae', function()
-        vim.diagnostic.setqflist { severity = 'E' }
+        vim.diagnostic.setqflist { severity = vim.diagnostic.severity.E }
       end)
 
       -- all workspace warnings
       map('n', '<leader>aw', function()
-        vim.diagnostic.setqflist { severity = 'W' }
+        vim.diagnostic.setqflist { severity = vim.diagnostic.severity.W }
       end)
 
       -- buffer diagnostics only

@@ -6,6 +6,12 @@ return {
       '<cmd>Freeze<cr>',
       desc = 'Freeze',
     },
+    {
+      '<leader>gf',
+      '<cmd>Freeze<cr>',
+      desc = 'Freeze',
+      mode = 'v',
+    },
   },
   config = function()
     require('freeze').setup {
