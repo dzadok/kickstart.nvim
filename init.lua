@@ -436,7 +436,7 @@ require('lazy').setup({
             n = { ['<c-t>'] = require('trouble.sources.telescope').open },
           },
         },
-        -- pickers = {}
+        pickers = { find_files = { hidden = true } },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
