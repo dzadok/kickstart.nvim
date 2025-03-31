@@ -723,6 +723,7 @@ require('lazy').setup({
         -- ts_ls = {},
         --
 
+        vtsls = require('vtsls').lspconfig,
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -1032,7 +1033,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
@@ -1084,5 +1085,6 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagn
 
 require('telescope').load_extension 'git_worktree'
 
+vim.diagnostic.config { virtual_text = true }
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

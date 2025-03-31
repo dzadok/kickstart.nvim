@@ -32,12 +32,14 @@ return {
       end,
     },
   },
-  ft = { 'scala', 'sbt', 'java' },
+  ft = { 'scala', 'sbt' },
   opts = function()
     local metals_config = require('metals').bare_config()
 
     -- Example of settings
     metals_config.settings = {
+      javaHome = '/Users/davidzadok/.sdkman/candidates/java/11.0.25-tem',
+      sbtScript = '/Users/davidzadok/.sdkman/candidates/sbt/1.6.2/bin/sbt',
       showImplicitArguments = true,
       excludedPackages = { 'akka.actor.typed.javadsl', 'com.github.swagger.akka.javadsl' },
     }
@@ -50,7 +52,7 @@ return {
     metals_config.init_options.statusBarProvider = 'off'
 
     -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
-    metals_config.capabilities = require('cmp_nvim_lsp').default_capabilities()
+    metals_config.capabilities = require('blink.cmp').get_lsp_capabilities()
 
     metals_config.on_attach = function(client, bufnr)
       require('metals').setup_dap()
