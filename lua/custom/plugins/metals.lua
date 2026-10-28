@@ -38,8 +38,8 @@ return {
 
     -- Example of settings
     metals_config.settings = {
-      javaHome = '/Users/davidzadok/.sdkman/candidates/java/11.0.25-tem',
-      sbtScript = '/Users/davidzadok/.sdkman/candidates/sbt/1.6.2/bin/sbt',
+      -- javaHome = '/Users/davidzadok/.sdkman/candidates/java/11.0.25-tem',
+      -- sbtScript = '/Users/davidzadok/.sdkman/candidates/sbt/1.6.2/bin/sbt',
       showImplicitArguments = true,
       excludedPackages = { 'akka.actor.typed.javadsl', 'com.github.swagger.akka.javadsl' },
     }
